@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
+import propTypes from 'prop-types'
 import { withRouter } from 'react-router'
 
 class SearchBar extends PureComponent {
 state = {
-    value: ''
+    value: this.props.value
 }
 
 onChangeSearch = event => {
@@ -26,6 +27,14 @@ render () {
             <button onClick={this.onSearch}>Search</button>
         </div>)
     }
+}
+
+SearchBar.propTypes = {
+    value: propTypes.string
+}
+
+SearchBar.defaultProps = {
+    value: ''
 }
 
 export default withRouter(SearchBar)

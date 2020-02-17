@@ -1,1 +1,0 @@
-export const OPENWEATHER_API_URLBASE = 'api.openweathermap.org/data/2.5/forecast'
