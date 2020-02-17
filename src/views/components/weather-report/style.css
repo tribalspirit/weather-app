@@ -1,0 +1,12 @@
+.weather-report {
+    max-height: 80vh;
+    padding: 50px;
+}
+
+.weather-report .forecast-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,19 @@
+.forecast-card {
+    width: 15vw;
+    min-height: 15vh;
+    background-color: #58A0D0;
+    border-radius: 15px;
+    margin: 0.5vw;
+
+    padding: 20px;
+}
+
+.forecast-block, .temperature-block, .others-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.forecast-block {
+    padding-bottom: 20px;
+}

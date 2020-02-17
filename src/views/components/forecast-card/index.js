@@ -1,16 +1,16 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import './style.css'
 
 const ForecastCard = ({ dateTime, temperature, pressure, humidity, forecast }) => (
     <div className='forecast-card'>
-        <h2>{dateTime}</h2>
+        <h3>{dateTime}</h3>
         <div className='forecast-block'>
-            <div className='forecast'>{forecast.main}</div>
-            <div className='forecast-details'>{forecast.description}</div>
+            { forecast.map(f => (<div key={f.condition.toLowerCase()} className='forecast'><span className='forecast-details'>{f.condition}: {f.description}</span></div>))}
         </div>
 
         <div className='temperature-block'>
-            <div className='current'>Current: {temperature.current}</div>
+            <div className='main'>Temperature: {temperature.main}</div>
             <div className='feels-like'>Feels like: {temperature.feels}</div>
         </div>
 
@@ -32,11 +32,10 @@ ForecastCard.propTypes = {
     }),
     pressure: propTypes.number,
     humidity: propTypes.number,
-    forecast: propTypes.shape({
-        main: propTypes.string,
-        description: propTypes.string,
-        clouds: propTypes.string
-    })
+    forecast: propTypes.arrayOf(propTypes.shape({
+        condition: propTypes.string,
+        description: propTypes.string
+    }))
 }
 
 export default ForecastCard

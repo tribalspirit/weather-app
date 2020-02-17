@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { getWeatherReport } from '../../../service'
 import propTypes from 'prop-types'
 import ForecastCard from '../forecast-card'
+import './style.css'
+
 class WeatherReport extends PureComponent {
     state = {
         weatherData: [],
@@ -24,6 +26,7 @@ class WeatherReport extends PureComponent {
     getWeatherData = (params) => {
         this.setState({
             isLoading: true,
+            errorMessage: null,
             weatherData: []
         }, async () => {
             const res = await getWeatherReport(params)
@@ -47,7 +50,9 @@ class WeatherReport extends PureComponent {
         return (<div className='weather-report'>
             <h1>{city}</h1>
             { isLoading && (<div className='isLoading'>...Loading</div>) }
-            { weatherData.map(card => (<ForecastCard {...card} />)) }
+            <div className='forecast-container'>
+                { weatherData.map(card => (<ForecastCard key={card.id} {...card} />)) }
+            </div>
             { errorMessage && (<div>Something went wrong: {errorMessage}</div>) }
         </div>)
     }
