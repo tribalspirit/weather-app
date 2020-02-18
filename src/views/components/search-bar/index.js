@@ -1,15 +1,20 @@
 import React, { PureComponent } from 'react'
 import propTypes from 'prop-types'
 import { withRouter } from 'react-router'
+import './style.css'
 
 class SearchBar extends PureComponent {
 state = {
     value: this.props.value
 }
 
-onChangeSearch = event => {
+handleKeyDown = e => {
+    if (e.key === 'Enter') this.onSearch()
+}
+
+onChangeSearch = e => {
     this.setState({
-        value: event.target.value
+        value: e.target.value
     })
 }
 
@@ -23,7 +28,7 @@ render () {
     const { value } = this.state
 
     return (<div className='search-bar'>
-            <input type='text' value={value} onChange={this.onChangeSearch}/>
+            <input type='text' value={value} onChange={this.onChangeSearch} onKeyDown={this.handleKeyDown}/>
             <button onClick={this.onSearch}>Search</button>
         </div>)
     }

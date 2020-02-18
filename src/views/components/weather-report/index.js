@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { getWeatherReport } from '../../../service'
 import propTypes from 'prop-types'
 import ForecastCard from '../forecast-card'
+import Spinner from '../spinner'
+import { labelPropType } from '../../../config/prop-types'
 import './style.css'
 
 class WeatherReport extends PureComponent {
@@ -14,13 +16,13 @@ class WeatherReport extends PureComponent {
     async componentDidMount () {
         const { city, units } = this.props
         if (city === '') return
-        await this.getWeatherData({ city, units })
+        await this.getWeatherData({ city, units: units.value })
     }
 
     async componentDidUpdate (prevProps) {
         const { city, units } = this.props
         if (prevProps.city === city && prevProps.units === units) return
-        await this.getWeatherData({ city, units })
+        await this.getWeatherData({ city, units: units.value })
     }
 
     getWeatherData = (params) => {
@@ -44,14 +46,14 @@ class WeatherReport extends PureComponent {
     }
 
     render () {
-        const { city } = this.props
+        const { city, units } = this.props
         const { isLoading, weatherData, errorMessage } = this.state
 
         return (<div className='weather-report'>
-            <h1>{city}</h1>
-            { isLoading && (<div className='isLoading'>...Loading</div>) }
+            <h2>{city}</h2>
             <div className='forecast-container'>
-                { weatherData.map(card => (<ForecastCard key={card.id} {...card} />)) }
+                { isLoading && (<Spinner />) }
+                { weatherData.map(card => (<ForecastCard key={card.id} {...card} unitsLabel={units.label} />)) }
             </div>
             { errorMessage && (<div>Something went wrong: {errorMessage}</div>) }
         </div>)
@@ -60,7 +62,7 @@ class WeatherReport extends PureComponent {
 
 WeatherReport.propTypes = {
     city: propTypes.string,
-    units: propTypes.string
+    units: labelPropType
 }
 
 export default WeatherReport

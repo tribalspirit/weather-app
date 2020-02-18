@@ -1,6 +1,6 @@
 .weather-report {
     max-height: 80vh;
-    padding: 50px;
+    padding: 0 3vh;
 }
 
 .weather-report .forecast-container {

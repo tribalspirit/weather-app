@@ -1,19 +1,42 @@
 .forecast-card {
     width: 15vw;
     min-height: 15vh;
+    flex-grow: 1;
     background-color: #58A0D0;
     border-radius: 15px;
     margin: 0.5vw;
-
-    padding: 20px;
+    padding: 0 20px 20px;
 }
 
-.forecast-block, .temperature-block, .others-block {
+.forecast-card .label {
+    font-weight: bold;
+}
+
+.forecast-card .forecast-block, .temperature-block, .others-block {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
-.forecast-block {
+.forecast-card .forecast-block {
     padding-bottom: 20px;
+}
+
+.forecast-card .best-day {
+    margin-top: 18px;
+    padding: 10px;
+    border-top: 1px solid #3066BE;
+}
+
+.forecast-card .forecast-block .forecast {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #3066BE;    
+}
+
+.forecast-card .forecast-block .forecast-details {
+    display: flex;
+    align-items: center;
 }

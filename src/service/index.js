@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { OPENWEATHER_API_KEY, OPENWEATHER_API_URLBASE, UNITS } from '../consts'
+import { OPENWEATHER_API_KEY, OPENWEATHER_API_URLBASE, UNITS } from '../config/consts'
 import { weatherReportToFE } from './mappers'
 
 export const getWeatherReport = async ({ city, units = UNITS.METRIC }) => {
@@ -15,7 +15,7 @@ export const getWeatherReport = async ({ city, units = UNITS.METRIC }) => {
             units
         })
 
-        res.data = weatherReportToFE(data.body)
+        res.data = weatherReportToFE(data.body, units)
     }
     catch (error) {
         res.error = error
